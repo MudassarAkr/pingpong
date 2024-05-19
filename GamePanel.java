@@ -21,16 +21,16 @@ public class GamePanel extends JPanel implements Runnable {
     Ball ball;
     Score score;
     GamePanel(){
-        newPaddles();
-        newBall();
-        score = new Score(GAME_WIDTH,GAME_HEIGHT);
+        newPaddles(); // Create new paddles
+        newBall(); // Create a new ball
+        score = new Score(GAME_WIDTH,GAME_HEIGHT); // Initialize the score
 
         this.setFocusable(true);
-        this.addKeyListener(new AL());
-        this.setPreferredSize(SCREEN_SIZE);
+        this.addKeyListener(new AL()); // Add key listener for paddle movement
+        this.setPreferredSize(SCREEN_SIZE); // Set the preferred size of the panel
 
-        gameThread = new Thread(this);
-        gameThread.start();
+        gameThread = new Thread(this); // Create a new thread for the game loop
+        gameThread.start(); // Start the game loop thread
     }
 
     public void newBall(){
@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paint(Graphics g){
         image = createImage(getWidth(),getHeight());
         graphics = image.getGraphics();
-        draw(graphics);
+        draw(graphics); // Draw the game elements
         g.drawImage(image,0,0,this);
     }
 
@@ -130,7 +130,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
-        // game loo[
+        // game loop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000/amountOfTicks;
